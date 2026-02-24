@@ -1,0 +1,77 @@
+%%{ init: { "theme": "base", "themeVariables": { "fontSize": "13px" } } }%%
+flowchart LR
+    subgraph frontend ["Frontend — React 19 + Vite 7"]
+        direction TB
+        pages["Ward List | Batch Analysis<br/>Patient Detail"]
+        hook["usePipelineStream<br/>useReducer"]
+        render["11 Dashboard Cards<br/>6 Data Drawers<br/>streamingText + streamingThinking"]
+        pages --> hook --> render
+    end
+
+    frontend -- "POST /api/run/{case_id}<br/>fetch() + ReadableStream" --> sse_endpoint
+    frontend -. "GET /api/cases<br/>GET /api/case/{id}/data<br/>GET /api/cxr/{filename}" .-> fastapi
+
+    sse_endpoint["SSE Endpoint<br/>/api/run/{case_id}"]
+
+    subgraph streaming ["Queue Bridge — SSE Streaming"]
+        direction TB
+        queue["queue.Queue<br/>+ _SENTINEL"]
+        batching["Token Batching<br/>50ms flush window"]
+        heartbeat["Heartbeat<br/>15s : keepalive"]
+        events["SSE Events<br/>pipeline_start → node_start<br/>→ sub_node_progress<br/>→ token_stream<br/>→ node_complete<br/>→ pipeline_complete"]
+    end
+
+    sse_endpoint --> queue
+    queue --> batching
+    queue --> heartbeat
+    batching --> events -- "X-Accel-Buffering: no" --> frontend
+
+    subgraph backend ["FastAPI Backend (:8000)"]
+        direction TB
+        fastapi["FastAPI Server"]
+        graph_thread["Graph Thread<br/>(daemon thread)"]
+        callbacks["Thread-Local Callbacks<br/>progress_cb + token_cb"]
+        fastapi --> graph_thread
+        graph_thread --> callbacks
+    end
+
+    graph_thread -- "push events" --> queue
+    callbacks -- "set_streaming_callbacks()" --> queue
+
+    subgraph pipeline ["LangGraph 8-Node Pipeline"]
+        direction TB
+        nodes_cpu["load_case → severity_scoring<br/>→ check_contradictions<br/>→ treatment_selection<br/>→ monitoring_plan"]
+        nodes_gpu["parallel_extraction<br/>(sub_node_progress, 8 GPU calls)<br/>contradiction_resolution<br/>(token streaming)<br/>output_assembly<br/>(token streaming)"]
+    end
+
+    graph_thread --> pipeline
+
+    subgraph gpu ["MedGemma 4B GPU"]
+        direction TB
+        model["google/medgemma-1.5-4b-it<br/>SDPA · bfloat16 · lazy singleton"]
+        streamer["TextIteratorStreamer<br/>token_callback(text, is_thinking)"]
+    end
+
+    pipeline -- "call_medgemma()<br/>call_medgemma_streaming()" --> model
+    model --> streamer -- "tokens" --> callbacks
+
+    classDef feNode fill:#7c3aed,stroke:#5b21b6,color:#ffffff,stroke-width:2px
+    classDef sseNode fill:#6366f1,stroke:#4338ca,color:#ffffff,stroke-width:2px
+    classDef serverNode fill:#10b981,stroke:#047857,color:#ffffff,stroke-width:2px
+    classDef cpuNode fill:#10b981,stroke:#047857,color:#ffffff,stroke-width:2px
+    classDef gpuNode fill:#3b82f6,stroke:#1e40af,color:#ffffff,stroke-width:2px
+    classDef bridgeNode fill:#8b5cf6,stroke:#6d28d9,color:#ffffff,stroke-width:2px
+
+    class pages,hook,render feNode
+    class sse_endpoint,events sseNode
+    class queue,batching,heartbeat bridgeNode
+    class fastapi,graph_thread,callbacks serverNode
+    class nodes_cpu cpuNode
+    class nodes_gpu gpuNode
+    class model,streamer gpuNode
+
+    style frontend fill:#f5f3ff,stroke:#7c3aed,stroke-width:2px,color:#4c1d95
+    style streaming fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#4c1d95
+    style backend fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#064e3b
+    style pipeline fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e3a5f
+    style gpu fill:#bfdbfe,stroke:#2563eb,stroke-width:2px,color:#1e3a5f

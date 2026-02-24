@@ -1,0 +1,58 @@
+%%{ init: { "theme": "base", "themeVariables": { "fontSize": "13px" } } }%%
+flowchart LR
+    fhir_in["FHIR R4 Bundle"]
+
+    fhir_in --> bundle_check{"Bundle<br/>present?"}
+
+    bundle_check -. "no" .-> no_bundle_err["Error:<br/>No bundle provided"]
+
+    bundle_check -- "yes" --> narrative_path
+    bundle_check -- "yes" --> structured_path
+
+    subgraph narrative_path ["Narrative Path"]
+        direction TB
+        get_doc["get_document_text()"]
+        get_doc --> step1["Step 1: Narrative Filter<br/>GPU 1/3 · 1000 tok<br/>thinking OFF<br/>CAP_EXTRACTION_INSTRUCTION"]
+        step1 --> narr_out["7-category text:<br/>demographics, history,<br/>exam, allergies,<br/>comorbidities, meds,<br/>social"]
+    end
+
+    subgraph structured_path ["Structured Path"]
+        direction TB
+        group_res["group_resources_by_type()<br/>+ render_resources_as_text()"]
+        group_res --> step2["Step 2: Structured Filter<br/>GPU 2/3 · 1000 tok<br/>thinking OFF<br/>CAP_EXTRACTION_INSTRUCTION"]
+        step2 --> struct_out["7-category text:<br/>observations, conditions,<br/>allergies, medications,<br/>encounters, patient,<br/>social"]
+    end
+
+    narr_out --> step3
+    struct_out --> step3
+
+    step3["Step 3: Synthesis<br/>GPU 3/3 · 2000 tok<br/>thinking OFF<br/>CAP_EXTRACTION_INSTRUCTION"]
+
+    step3 --> parse["parse_json_response()"]
+    parse --> validate["validate_and_repair_ehr_output()"]
+
+    validate --> tool_result["ToolResult<br/>{demographics, clinical_exam,<br/>curb65_variables}"]
+
+    %% Error paths
+    step1 -. "fails" .-> partial1["status=partial<br/>structured may succeed"]
+    step2 -. "fails" .-> partial2["status=partial<br/>narrative may succeed"]
+    partial1 -. "both fail" .-> both_err["Error:<br/>Both extractions failed"]
+    partial2 -. "both fail" .-> both_err
+    step3 -. "fails" .-> synth_err["Error:<br/>Synthesis failed"]
+
+    classDef gpuNode fill:#3b82f6,stroke:#1e40af,color:#ffffff,stroke-width:2px
+    classDef cpuNode fill:#10b981,stroke:#047857,color:#ffffff,stroke-width:2px
+    classDef condNode fill:#f59e0b,stroke:#b45309,color:#ffffff,stroke-width:2px
+    classDef sourceNode fill:#e5e7eb,stroke:#6b7280,color:#1f2937,stroke-width:2px
+    classDef extractNode fill:#60a5fa,stroke:#2563eb,color:#ffffff,stroke-width:1px
+    classDef fallbackNode fill:#fef2f2,stroke:#ef4444,color:#991b1b,stroke-width:2px,stroke-dasharray:5 5
+
+    class step1,step2,step3 gpuNode
+    class get_doc,group_res,parse,validate cpuNode
+    class bundle_check condNode
+    class fhir_in,tool_result sourceNode
+    class narr_out,struct_out extractNode
+    class no_bundle_err,partial1,partial2,both_err,synth_err fallbackNode
+
+    style narrative_path fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e3a5f
+    style structured_path fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e3a5f

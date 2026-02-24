@@ -1,0 +1,16 @@
+langgraph>=0.2
+langchain-core>=0.3
+pydantic>=2.0
+torch>=2.0
+transformers>=4.40
+accelerate>=0.30
+Pillow>=10.0
+scikit-image>=0.21
+
+[colab]
+nest-asyncio>=1.6
+bitsandbytes>=0.43
+
+[dev]
+pytest>=8.0
+pytest-asyncio>=0.23

@@ -1,0 +1,87 @@
+%%{ init: { "theme": "base", "themeVariables": { "fontSize": "13px" } } }%%
+flowchart LR
+    subgraph sources ["Data Sources"]
+        direction TB
+        cxr["CXR Findings"]
+        lab["Lab Results"]
+        exam["Clinical Exam"]
+    end
+
+    cxr --> engine
+    lab --> engine
+    exam --> engine
+
+    engine["Contradiction Engine<br/>11 Rules"]
+
+    engine --> cross_modal
+    engine --> stewardship
+
+    subgraph cross_modal ["Cross-Modal Rules (GPU)"]
+        direction TB
+        cr1["CR-1: Clear CXR +<br/>Focal Crackles"]
+        cr2["CR-2: Clear CXR +<br/>CRP &gt; 100"]
+        cr3["CR-3: Consolidation +<br/>CRP &lt; 20"]
+        cr4["CR-4: Low CURB65 +<br/>High-Risk Features"]
+        cr5["CR-5: Bilateral CXR +<br/>Unilateral Signs"]
+        cr6["CR-6: Effusion Without<br/>Consolidation"]
+    end
+
+    subgraph stewardship ["Stewardship Rules (Deterministic)"]
+        direction TB
+        cr7["CR-7: Organism-Drug<br/>Mismatch"]
+        cr8["CR-8: Unnecessary<br/>Macrolide"]
+        cr9["CR-9: IV→Oral<br/>Switch Opportunity"]
+        cr10["CR-10: Unnecessary<br/>Fluoroquinolone"]
+        cr11["CR-11: Pneumococcal<br/>De-escalation"]
+    end
+
+    cross_modal --> resolution_gpu
+    stewardship --> resolution_det
+
+    subgraph resolution_gpu ["GPU Resolution (Strategies A-D)"]
+        direction TB
+        stratA["A: Zone Re-Analysis<br/>CR-1, CR-5"]
+        stratB["B: Temporal Context<br/>CR-2"]
+        stratC["C: Differential Diagnosis<br/>CR-3, CR-6"]
+        stratD["D: Severity Override<br/>CR-4"]
+    end
+
+    subgraph resolution_det ["Deterministic Resolution"]
+        direction TB
+        stratE["E: Stewardship Alert<br/>CR-7 to CR-11<br/>0 GPU Calls"]
+    end
+
+    resolution_gpu --> confidence
+    resolution_det --> confidence
+
+    confidence["Confidence Tiering"]
+
+    confidence --> alerts
+    confidence --> info
+
+    alerts["Action Alerts<br/>High + Moderate Confidence"]
+    info["Informational<br/>Low Confidence"]
+
+    classDef gpuEl fill:#3b82f6,stroke:#1e40af,color:#ffffff,stroke-width:2px
+    classDef detEl fill:#10b981,stroke:#047857,color:#ffffff,stroke-width:2px
+    classDef sourceEl fill:#e5e7eb,stroke:#6b7280,color:#1f2937,stroke-width:2px
+    classDef alertEl fill:#f59e0b,stroke:#b45309,color:#1f2937,stroke-width:2px
+    classDef infoEl fill:#fef3c7,stroke:#d97706,color:#92400e,stroke-width:1px
+    classDef engineEl fill:#8b5cf6,stroke:#6d28d9,color:#ffffff,stroke-width:2px
+    classDef confEl fill:#6366f1,stroke:#4338ca,color:#ffffff,stroke-width:2px
+
+    class cxr,lab,exam sourceEl
+    class engine engineEl
+    class cr1,cr2,cr3,cr4,cr5,cr6 gpuEl
+    class cr7,cr8,cr9,cr10,cr11 detEl
+    class stratA,stratB,stratC,stratD gpuEl
+    class stratE detEl
+    class confidence confEl
+    class alerts alertEl
+    class info infoEl
+
+    style sources fill:#f3f4f6,stroke:#9ca3af,stroke-width:1px,color:#374151
+    style cross_modal fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e3a5f
+    style stewardship fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#064e3b
+    style resolution_gpu fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e3a5f
+    style resolution_det fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#064e3b

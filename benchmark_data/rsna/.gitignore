@@ -1,0 +1,5 @@
+# Keep images/ (NIH public domain, attribution in README.md)
+# Exclude raw data files
+*.csv
+*.zip
+*.dcm

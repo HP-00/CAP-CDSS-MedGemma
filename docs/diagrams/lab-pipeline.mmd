@@ -1,0 +1,56 @@
+%%{ init: { "theme": "base", "themeVariables": { "fontSize": "13px" } } }%%
+flowchart LR
+    lab_in["Lab Sources"]
+
+    lab_in --> text_check{"Plaintext<br/>lab_report?"}
+    lab_in --> fhir_check{"FHIR Lab<br/>Observations?"}
+
+    subgraph text_path ["Plaintext Path"]
+        direction TB
+        text_check -- "yes" --> step1a["Step 1a: Text Extraction<br/>GPU 1/2 · 1000 tok<br/>thinking OFF<br/>CAP_EXTRACTION_INSTRUCTION"]
+        step1a --> text_facts["English facts<br/>for 12 lab tests"]
+    end
+
+    subgraph fhir_path ["FHIR Path"]
+        direction TB
+        fhir_check -- "yes" --> step1b["Step 1b: FHIR Parsing<br/>0 GPU · deterministic<br/>extract_lab_observations()<br/>+ render_resources_as_text()"]
+        step1b --> fhir_facts["Structured lab text"]
+    end
+
+    text_check -. "no" .-> no_text["No plaintext"]
+    fhir_check -. "no" .-> no_fhir["No FHIR labs"]
+
+    no_text -. "neither source" .-> mock_lab["Mock Lab<br/>Passthrough fallback"]
+    no_fhir -. "neither source" .-> mock_lab
+
+    text_facts --> combine["Combine Facts<br/>FROM PATHOLOGY REPORT +<br/>FROM STRUCTURED RECORDS"]
+    fhir_facts --> combine
+
+    combine --> step2["Step 2: Lab Synthesis<br/>GPU 2/2 · 3500 tok<br/>thinking OFF · 1-shot example<br/>CAP_EXTRACTION_INSTRUCTION"]
+
+    step2 --> parse["parse_json_response()"]
+    parse --> validate["validate_and_repair_lab_output()<br/>Name normalization:<br/>WBC→wcc, Hb→haemoglobin"]
+
+    validate --> tool_result["ToolResult<br/>{lab_values: {test: {value,<br/>unit, ref_range, abnormal_flag}}}"]
+
+    %% Error paths
+    step1a -. "fails + no FHIR" .-> text_err["Error:<br/>No lab data available"]
+    step1a -. "fails + FHIR ok" .-> partial_text["status=partial<br/>Proceed with FHIR only"]
+    step2 -. "fails" .-> synth_err["Error:<br/>Synthesis failed"]
+
+    classDef gpuNode fill:#3b82f6,stroke:#1e40af,color:#ffffff,stroke-width:2px
+    classDef cpuNode fill:#10b981,stroke:#047857,color:#ffffff,stroke-width:2px
+    classDef condNode fill:#f59e0b,stroke:#b45309,color:#ffffff,stroke-width:2px
+    classDef sourceNode fill:#e5e7eb,stroke:#6b7280,color:#1f2937,stroke-width:2px
+    classDef extractNode fill:#60a5fa,stroke:#2563eb,color:#ffffff,stroke-width:1px
+    classDef fallbackNode fill:#fef2f2,stroke:#ef4444,color:#991b1b,stroke-width:2px,stroke-dasharray:5 5
+
+    class step1a,step2 gpuNode
+    class step1b,combine,parse,validate cpuNode
+    class text_check,fhir_check condNode
+    class lab_in,tool_result sourceNode
+    class text_facts,fhir_facts extractNode
+    class no_text,no_fhir,mock_lab,text_err,partial_text,synth_err fallbackNode
+
+    style text_path fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e3a5f
+    style fhir_path fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#064e3b

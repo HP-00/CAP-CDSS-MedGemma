@@ -1,0 +1,752 @@
+{
+  "case_id": "cxr_subtle",
+  "patient_id": "PT-2026-1004",
+  "demographics": {
+    "age": 50,
+    "sex": "Male",
+    "weight_kg": 78
+  },
+  "presenting_complaint": "2-day history of fever, dry cough and myalgia",
+  "clinical_exam": {
+    "respiratory_exam": {
+      "crackles": true,
+      "crackles_location": "right mid-zone",
+      "bronchial_breathing": false,
+      "bronchial_breathing_location": null,
+      "dullness_to_percussion": false,
+      "dullness_location": null,
+      "reduced_air_entry": false
+    },
+    "observations": {
+      "respiratory_rate": 18,
+      "systolic_bp": 132,
+      "diastolic_bp": 80,
+      "heart_rate": 86,
+      "spo2": 97,
+      "temperature": 38.2,
+      "supplemental_o2": "room air"
+    },
+    "confusion_assessment": {
+      "amt_score": 10,
+      "amt_total": 10,
+      "confused": false
+    }
+  },
+  "lab_results": {
+    "crp": {
+      "value": 160,
+      "unit": "mg/L",
+      "reference_range": "<5",
+      "abnormal": true
+    },
+    "urea": {
+      "value": 5.5,
+      "unit": "mmol/L",
+      "reference_range": "2.5-7.8",
+      "abnormal": false
+    },
+    "creatinine": {
+      "value": 85,
+      "unit": "umol/L",
+      "reference_range": "62-106",
+      "abnormal": false
+    },
+    "egfr": {
+      "value": 88,
+      "unit": "mL/min/1.73m2",
+      "reference_range": ">90",
+      "abnormal": true
+    },
+    "sodium": {
+      "value": 138,
+      "unit": "mmol/L",
+      "reference_range": "133-146",
+      "abnormal": false
+    },
+    "potassium": {
+      "value": 4.2,
+      "unit": "mmol/L",
+      "reference_range": "3.5-5.3",
+      "abnormal": false
+    },
+    "procalcitonin": {
+      "value": 0.5,
+      "unit": "ng/mL",
+      "reference_range": "<0.1",
+      "abnormal": true
+    },
+    "lactate": {
+      "value": 1.1,
+      "unit": "mmol/L",
+      "reference_range": "<2.0",
+      "abnormal": false
+    },
+    "wcc": {
+      "value": 13.0,
+      "unit": "x10^9/L",
+      "reference_range": "4.0-11.0",
+      "abnormal": true
+    },
+    "neutrophils": {
+      "value": 10.0,
+      "unit": "x10^9/L",
+      "reference_range": "2.0-7.5",
+      "abnormal": true
+    },
+    "haemoglobin": {
+      "value": 145,
+      "unit": "g/L",
+      "reference_range": "130-170",
+      "abnormal": false
+    },
+    "platelets": {
+      "value": 220,
+      "unit": "x10^9/L",
+      "reference_range": "150-400",
+      "abnormal": false
+    }
+  },
+  "cxr": {
+    "findings": {
+      "consolidation": {
+        "present": true,
+        "confidence": "low",
+        "location": "right mid-zone",
+        "description": "Subtle opacity right mid-zone, possible early consolidation"
+      },
+      "pleural_effusion": {
+        "present": false,
+        "confidence": "high"
+      },
+      "cardiomegaly": {
+        "present": false,
+        "confidence": "high"
+      },
+      "edema": {
+        "present": false,
+        "confidence": "high"
+      },
+      "atelectasis": {
+        "present": false,
+        "confidence": "moderate"
+      }
+    },
+    "image_quality": {
+      "projection": "PA",
+      "rotation": "minimal",
+      "penetration": "adequate"
+    },
+    "image_path": "benchmark_data/rsna/images/subtle_002.png",
+    "prior_image_path": "benchmark_data/rsna/images/normal_003.png"
+  },
+  "past_medical_history": {
+    "comorbidities": [],
+    "medications": [],
+    "allergies": [],
+    "recent_antibiotics": []
+  },
+  "social_history": {
+    "pregnancy": false,
+    "oral_tolerance": true,
+    "eating_independently": true,
+    "travel_history": [],
+    "immunosuppression": false,
+    "smoking_status": "never"
+  },
+  "fhir_bundle": {
+    "resourceType": "Bundle",
+    "type": "collection",
+    "entry": [
+      {
+        "resource": {
+          "resourceType": "Patient",
+          "id": "pt-001",
+          "name": [
+            {
+              "family": "Okonkwo",
+              "given": [
+                "David"
+              ]
+            }
+          ],
+          "gender": "male",
+          "birthDate": "1975-07-15",
+          "identifier": [
+            {
+              "system": "https://fhir.nhs.uk/Id/nhs-number",
+              "value": "7458832019"
+            }
+          ]
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "AllergyIntolerance",
+          "id": "allergy-nkda",
+          "code": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "716186003",
+                "display": "No known allergy"
+              }
+            ],
+            "text": "No known drug allergies"
+          },
+          "clinicalStatus": {
+            "coding": [
+              {
+                "code": "active"
+              }
+            ]
+          },
+          "patient": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-rr",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "9279-1",
+                "display": "Respiratory rate"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 18,
+            "unit": "/min"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-bp",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "85354-9",
+                "display": "Blood pressure panel"
+              }
+            ]
+          },
+          "component": [
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8480-6",
+                    "display": "Systolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 132,
+                "unit": "mmHg"
+              }
+            },
+            {
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8462-4",
+                    "display": "Diastolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 80,
+                "unit": "mmHg"
+              }
+            }
+          ],
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-hr",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8867-4",
+                "display": "Heart rate"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 86,
+            "unit": "/min"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-spo2",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "2708-6",
+                "display": "Oxygen saturation"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 97,
+            "unit": "%"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-temp",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8310-5",
+                "display": "Body temperature"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 38.2,
+            "unit": "Cel"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-urea",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "3094-0",
+                "display": "Urea"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 5.5,
+            "unit": "mmol/L"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-crp",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "1988-5",
+                "display": "C-reactive protein"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 160,
+            "unit": "mg/L"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-creatinine",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "2160-0",
+                "display": "Creatinine"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 85,
+            "unit": "umol/L"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-egfr",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "33914-3",
+                "display": "eGFR"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 88,
+            "unit": "mL/min/1.73m2"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-sodium",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "2951-2",
+                "display": "Sodium"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 138,
+            "unit": "mmol/L"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-potassium",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "2823-3",
+                "display": "Potassium"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 4.2,
+            "unit": "mmol/L"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-wcc",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "6690-2",
+                "display": "White cell count"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 13.0,
+            "unit": "x10^9/L"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-neut",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "751-8",
+                "display": "Neutrophils"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 10.0,
+            "unit": "x10^9/L"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-hb",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "718-7",
+                "display": "Haemoglobin"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 145,
+            "unit": "g/L"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-plt",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "777-3",
+                "display": "Platelets"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 220,
+            "unit": "x10^9/L"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-pct",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "33959-8",
+                "display": "Procalcitonin"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 0.5,
+            "unit": "ng/mL"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-lactate",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "2524-7",
+                "display": "Lactate"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 1.1,
+            "unit": "mmol/L"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-eating",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "75244-9",
+                "display": "Ability to eat independently"
+              }
+            ]
+          },
+          "valueCodeableConcept": {
+            "text": "Eating and drinking normally"
+          },
+          "effectiveDateTime": "2026-02-18T14:00:00Z",
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "DocumentReference",
+          "id": "doc-gp-referral",
+          "description": "GP referral letter",
+          "content": [
+            {
+              "attachment": {
+                "contentType": "text/plain",
+                "data": "VVJHRU5UIEdQIFJFRkVSUkFMIExFVFRFUgoKRHIgSy4gT3NlaSwgR3JlZW5maWVsZCBTdXJnZXJ5ClRvOiBBY3V0ZSBNZWRpY2FsIFVuaXQsIENpdHkgR2VuZXJhbCBIb3NwaXRhbApEYXRlOiAxOC8wMi8yMDI2CgpSZTogRGF2aWQgT0tPTktXTywgRE9CIDE1LzA3LzE5NzUsIE5IUyA3NDUgODgzIDIwMTkKCkRlYXIgQ29sbGVhZ3VlcywKCkkgYW0gcmVmZXJyaW5nIHRoaXMgNTAteWVhci1vbGQgZ2VudGxlbWFuLCBwcmV2aW91c2x5IGZpdCBhbmQgd2VsbCB3aXRoIG5vIHNpZ25pZmljYW50IHBhc3QgbWVkaWNhbCBoaXN0b3J5LiBIZSBwcmVzZW50cyB3aXRoIGEgMi1kYXkgaGlzdG9yeSBvZiBmZXZlciAoMzkuMEMpLCBkcnkgY291Z2gsIGFuZCBteWFsZ2lhLiBObyByaWdvcnMgb3IgaGFlbW9wdHlzaXMuCgpJbiBzdXJnZXJ5OiBUZW1wIDM4LjJDLCBIUiA4NiwgQlAgMTMyLzgwLCBSUiAxOCwgU3BPMiA5NyUgb24gcm9vbSBhaXIuIENoZXN0IGF1c2N1bHRhdGlvbjogc3VidGxlIGNyYWNrbGVzIHJpZ2h0IG1pZC16b25lLCBvdGhlcndpc2UgY2xlYXIuCgpDUlAgcG9pbnQtb2YtY2FyZTogMTYwIG1nL0wuIEhlIGlzIG90aGVyd2lzZSB3ZWxsLCBlYXRpbmcgYW5kIGRyaW5raW5nIG5vcm1hbGx5LiBHaXZlbiByYWlzZWQgQ1JQLCBwbGVhc2UgcmV2aWV3IGFuZCBjb25zaWRlciBDWFIuCgpLaW5kIHJlZ2FyZHMsCkRyIEsuIE9zZWkK"
+              }
+            }
+          ],
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "DocumentReference",
+          "id": "doc-clerking",
+          "description": "Admission clerking note",
+          "content": [
+            {
+              "attachment": {
+                "contentType": "text/plain",
+                "data": "QUNVVEUgTUVESUNBTCBVTklUIOKAlCBBRE1JU1NJT04gQ0xFUktJTkcgTk9URQoKUGF0aWVudDogRGF2aWQgT0tPTktXTyAgRE9COiAxNS8wNy8xOTc1ICBOSFM6IDc0NSA4ODMgMjAxOSAgTVJOOiBQVC0yMDI2LTEwMDQKRGF0ZTogMTgvMDIvMjAyNiAxNDowMCAgQ2xlcmtlZCBieTogRHIgQS4gSHVzc2FpbiAoRlkyKQoKUEM6IDUweW8gcHJldmlvdXNseSBmaXQgbWFuIHdpdGggMi1kYXkgZmV2ZXIsIGRyeSBjb3VnaCBhbmQgbXlhbGdpYS4KCkhQQzogQWN1dGUgb25zZXQgZmV2ZXIgKHVwIHRvIDM5LjBDKSAyIGRheXMgYWdvLiBEcnkgY291Z2gsIGdlbmVyYWxpc2VkIG15YWxnaWEsIGhlYWRhY2hlLiBObyByaWdvcnMsIHN3ZWF0cyBvciBoYWVtb3B0eXNpcy4gTm8gc3B1dHVtIHByb2R1Y3Rpb24uIEVhdGluZyBhbmQgZHJpbmtpbmcgbm9ybWFsbHkuCgpQTUg6IE5pbCBzaWduaWZpY2FudC4KREg6IE5vbmUgcmVndWxhci4KQWxsZXJnaWVzOiBOS0RBCgpTSDogTm9uLXNtb2tlciwgbGl2ZXMgd2l0aCBmYW1pbHksIElUIGNvbnN1bHRhbnQuIEZ1bGx5IGluZGVwZW5kZW50LiBObyByZWNlbnQgdHJhdmVsIGFicm9hZC4gTm8gc2ljayBjb250YWN0cy4gTm90IGltbXVub3N1cHByZXNzZWQuCgpPL0U6CkdlbmVyYWw6IEFsZXJ0LCBvcmllbnRhdGVkLCB3ZWxsLWFwcGVhcmluZy4gQU1UIDEwLzEwLgpPYnM6IFJSIDE4LCBTcE8yIDk3JSBvbiByb29tIGFpciwgSFIgODYsIEJQIDEzMi84MCwgVGVtcCAzOC4yQwpSZXNwOiBTdWJ0bGUgY3JhY2tsZXMgcmlnaHQgbWlkLXpvbmUsIG90aGVyd2lzZSBjbGVhci4gR29vZCBhaXIgZW50cnkuCkNWUzogSFMgSStJSSswLCByZWd1bGFyLiBObyBvZWRlbWEuCkFiZG86IFNvZnQsIG5vbi10ZW5kZXIuCgpJbXByZXNzaW9uOiBDUlAgMTYwIChHUCkgc3VnZ2VzdHMgc2lnbmlmaWNhbnQgaW5mbGFtbWF0b3J5IHJlc3BvbnNlLiBTdWJ0bGUgcmlnaHQgbWlkLXpvbmUgY3JhY2tsZXMgbWF5IHJlcHJlc2VudCBlYXJseSBjb25zb2xpZGF0aW9uLiBDWFIgcmVxdWlyZWQgdG8gY29uZmlybS4gTGlrZWx5IGxvdyBzZXZlcml0eSBpZiBubyBjb25zb2xpZGF0aW9uLgoKUGxhbjogQ1hSLCBibG9vZHMsIENVUkI2NSBzY29yaW5nLiBMaWtlbHkgc3VpdGFibGUgZm9yIG91dHBhdGllbnQgbWFuYWdlbWVudCBpZiBDWFIgY29uZmlybXMgbWlsZC9zdWJ0bGUgZGlzZWFzZS4K"
+              }
+            }
+          ],
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Encounter",
+          "id": "enc-001",
+          "class": {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "code": "AMB",
+            "display": "Acute Medical Unit"
+          },
+          "period": {
+            "start": "2026-02-18T13:30:00Z"
+          },
+          "reasonCode": [
+            {
+              "text": "Fever with raised inflammatory markers"
+            }
+          ],
+          "subject": {
+            "reference": "Patient/pt-001"
+          }
+        }
+      }
+    ]
+  },
+  "lab_report": {
+    "format": "text",
+    "content": "====================================================================\n  CITY GENERAL HOSPITAL NHS FOUNDATION TRUST\n  Department of Clinical Biochemistry & Haematology\n====================================================================\nPatient: David OKONKWO   DOB: 15/07/1975   NHS: 745 883 2019\nMRN: PT-2026-1004       Ward: AMU         Collected: 18/02/2026 14:30\nRequested by: Dr A. Hussain (FY2)\nSample: Venous blood (lithium heparin, EDTA)\n\nBIOCHEMISTRY\n--------------------------------------------------------------------\nTest                Result    Units        Reference Range    Flag\n--------------------------------------------------------------------\nC-reactive protein  160       mg/L         <5                 H\nUrea                5.5       mmol/L       2.5-7.8            \nCreatinine          85        umol/L       62-106             \neGFR (CKD-EPI)      88        mL/min/1.73m2>90                L\nSodium              138       mmol/L       133-146            \nPotassium           4.2       mmol/L       3.5-5.3            \nProcalcitonin       0.5       ng/mL        <0.1               H\nLactate             1.1       mmol/L       <2.0               \n\nHAEMATOLOGY\n--------------------------------------------------------------------\nTest                Result    Units        Reference Range    Flag\n--------------------------------------------------------------------\nWhite cell count    13.0      x10^9/L      4.0-11.0           H\nNeutrophils         10.0      x10^9/L      2.0-7.5            H\nHaemoglobin         145       g/L          130-170            \nPlatelets           220       x10^9/L      150-400            \n\nAuthorised by: Dr S. Khan (Consultant Biochemist) 18/02/2026 16:10\n====================================================================\n",
+    "source": "city_general_pathology"
+  },
+  "micro_results": [
+    {
+      "test_type": "blood_culture",
+      "organism": "No growth at 48 hours",
+      "status": "negative"
+    },
+    {
+      "test_type": "sputum_culture",
+      "organism": "Streptococcus pneumoniae",
+      "status": "positive",
+      "antibiogram": {
+        "amoxicillin": "S",
+        "co_amoxiclav": "S",
+        "clarithromycin": "S",
+        "doxycycline": "S",
+        "levofloxacin": "S",
+        "penicillin": "S"
+      }
+    },
+    {
+      "test_type": "urinary_antigen",
+      "organism": "Pneumococcal antigen",
+      "status": "positive"
+    },
+    {
+      "test_type": "urinary_antigen",
+      "organism": "Legionella antigen",
+      "status": "negative"
+    }
+  ],
+  "ground_truth": {
+    "curb65": 0,
+    "severity_tier": "low",
+    "contradictions": [],
+    "antibiotic": "amoxicillin",
+    "discharge_met": true,
+    "description": "Subtle CXR findings with clinical signs -- concordant. 50M, CURB65=0. CXR consolidation present (low confidence) + crackles present = concordant, so no CR-1. No CR-4 triggers (no immunosuppression, 0 comorbidities, SpO2 97%). Amoxicillin monotherapy. 1 discharge criterion not met (temp 38.2 > 37.8) but <2 so discharge OK."
+  }
+}

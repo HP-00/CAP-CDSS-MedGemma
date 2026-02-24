@@ -1,0 +1,33 @@
+# CAP-CDSS: Community-Acquired Pneumonia Clinical Decision Support System
+#
+# Core dependencies for the pipeline. For full development setup use:
+#   pip install -e ".[dev,server]"
+#
+# For benchmark evaluation:
+#   pip install -e ".[dev,benchmark]"
+
+langgraph>=0.2.24
+langchain-core>=0.3
+pydantic>=2.0
+torch>=2.0
+transformers>=4.40
+accelerate>=0.30
+Pillow>=10.0
+scikit-image>=0.21
+json-repair>=0.30
+
+## Server
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.12
+sse-starlette>=2.0.0
+
+## Development
+pytest>=8.0
+pytest-asyncio>=0.23
+nest-asyncio>=1.6
+langsmith>=0.1.0
+
+## Benchmarking
+plotly>=5.0.0
+pandas>=2.0.0

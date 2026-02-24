@@ -1,0 +1,42 @@
+{
+  "antibiotic_concordance": {
+    "mean": 1.0,
+    "min": 1.0,
+    "max": 1.0
+  },
+  "completeness": {
+    "mean": 1.0,
+    "min": 1.0,
+    "max": 1.0
+  },
+  "contradiction_precision": {
+    "mean": 0.898,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "contradiction_recall": {
+    "mean": 0.898,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "cxr_consolidation": {
+    "mean": 0.5833,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "cxr_localization": {
+    "mean": 0.1829,
+    "min": 0.0,
+    "max": 0.3387
+  },
+  "safety_score": {
+    "mean": 1.0,
+    "min": 1.0,
+    "max": 1.0
+  },
+  "severity_accuracy": {
+    "mean": 1.0,
+    "min": 1.0,
+    "max": 1.0
+  }
+}

@@ -1,0 +1,613 @@
+{
+  "timestamp": "2026-02-22T00:51:35.143160+00:00",
+  "metrics": {
+    "antibiotic_concordance": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "completeness": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "contradiction_precision": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "contradiction_recall": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "safety_score": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "severity_accuracy": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    }
+  },
+  "results": [
+    {
+      "case_id": "CURB65-U-BELOW",
+      "elapsed_seconds": 0.003,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-U-ABOVE",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-R-BELOW",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-R-ABOVE",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-SBP-BELOW",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-SBP-ABOVE",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-DBP-BELOW",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-DBP-ABOVE",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-AGE-BELOW",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-AGE-ABOVE",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-AMT-BELOW",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-AMT-ABOVE",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-COMPOSITE-LOW",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-COMPOSITE-MOD",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CURB65-COMPOSITE-HIGH",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR1-HIGH",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR1-MOD",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR2-HIGH",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR2-MOD",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR3-HIGH",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR4-HIGH",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR5",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR6",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR7-LAB-R",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR7-POP-R",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR8-FIRE",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR8-EXEMPT",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR9-MET",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR9-NOT",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR10-FIRE",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR10-TRUE",
+      "elapsed_seconds": 0.001,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR11-FIRE",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    },
+    {
+      "case_id": "CR11-SUSC",
+      "elapsed_seconds": 0.002,
+      "error": null,
+      "scores": {
+        "severity_accuracy": 1.0,
+        "antibiotic_concordance": 1.0,
+        "contradiction_recall": 1.0,
+        "contradiction_precision": 1.0,
+        "safety_score": 1.0,
+        "completeness": 1.0
+      }
+    }
+  ],
+  "chart_data": {
+    "severity_predictions": [
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "moderate",
+        "actual": "moderate"
+      },
+      {
+        "predicted": "high",
+        "actual": "high"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "moderate",
+        "actual": "moderate"
+      },
+      {
+        "predicted": "moderate",
+        "actual": "moderate"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "low",
+        "actual": "low"
+      },
+      {
+        "predicted": "moderate",
+        "actual": "moderate"
+      },
+      {
+        "predicted": "high",
+        "actual": "high"
+      },
+      {
+        "predicted": "high",
+        "actual": "high"
+      },
+      {
+        "predicted": "high",
+        "actual": "high"
+      },
+      {
+        "predicted": "high",
+        "actual": "high"
+      },
+      {
+        "predicted": "high",
+        "actual": "high"
+      },
+      {
+        "predicted": "high",
+        "actual": "high"
+      },
+      {
+        "predicted": "high",
+        "actual": "high"
+      }
+    ],
+    "capability_axes": {
+      "Extraction": 1.0,
+      "Guideline Adherence": 1.0,
+      "Safety": 1.0,
+      "Severity Scoring": 1.0,
+      "Contradiction Detection": 1.0
+    },
+    "latency": {
+      "mean_per_case": 0.002,
+      "total": 0.054
+    }
+  }
+}

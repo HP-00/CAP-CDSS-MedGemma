@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cap-agent"
+version = "0.1.0"
+description = "Community-Acquired Pneumonia Clinical Decision Support Agent (MedGemma + LangGraph)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "CC-BY-4.0"}
+
+dependencies = [
+    "langgraph>=0.2.24",
+    "langchain-core>=0.3",
+    "pydantic>=2.0",
+    "torch>=2.0",
+    "transformers>=4.40",
+    "accelerate>=0.30",
+    "Pillow>=10.0",
+    "scikit-image>=0.21",
+    "json-repair>=0.30",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "nest-asyncio>=1.6",
+    "langsmith>=0.1.0",
+]
+benchmark = [
+    "langsmith>=0.1.0",
+    "plotly>=5.0.0",
+    "pandas>=2.0.0",
+]
+colab = [
+    "nest-asyncio>=1.6",
+    "bitsandbytes>=0.43",
+]
+server = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "python-multipart>=0.0.12",
+    "sse-starlette>=2.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src", "."]
+include = ["cap_agent*", "benchmark_data*", "server*"]
+
+[tool.setuptools.package-data]
+"benchmark_data.rsna" = ["images/*.png"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

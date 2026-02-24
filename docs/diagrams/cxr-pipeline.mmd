@@ -1,0 +1,74 @@
+%%{ init: { "theme": "base", "themeVariables": { "fontSize": "13px" } } }%%
+flowchart LR
+    cxr_in["CXR Input<br/>image_path, prior?"]
+
+    cxr_in --> path_check{"image_path<br/>present?"}
+
+    path_check -. "no" .-> no_path_err["Error:<br/>No image path"]
+
+    path_check -- "yes" --> load_img["Image.open()<br/>+ pad_image_to_square()"]
+
+    load_img --> stage_a
+
+    subgraph stage_a ["Stage A: Classification"]
+        direction TB
+        classify["Classification<br/>GPU · always · 2000 tok<br/>thinking ON<br/>CAP_SYSTEM_INSTRUCTION"]
+        classify --> class_out["5 CheXpert findings:<br/>consolidation, effusion,<br/>cardiomegaly, edema,<br/>atelectasis<br/>+ image_quality JSON"]
+    end
+
+    class_out --> loc_check{"Positive<br/>localizable<br/>findings?"}
+
+    loc_check -- "yes" --> stage_b
+
+    subgraph stage_b ["Stage B: Localization"]
+        direction TB
+        localize["Localization<br/>GPU per finding · 0-3 calls<br/>1000 tok · thinking ON<br/>CAP_SYSTEM_INSTRUCTION"]
+        localize --> bbox_out["Bounding boxes<br/>[y0, x0, y1, x1]<br/>normalized 0-1000"]
+    end
+
+    loc_check -. "no" .-> skip_b["Skip B"]
+
+    bbox_out --> prior_check
+    skip_b --> prior_check
+
+    prior_check{"Prior image<br/>available?"}
+
+    prior_check -- "yes" --> stage_c
+
+    subgraph stage_c ["Stage C: Longitudinal"]
+        direction TB
+        load_prior["Load prior<br/>+ pad_image_to_square()"]
+        load_prior --> longitudinal["Longitudinal Comparison<br/>GPU · 1200 tok · 2 images<br/>thinking ON<br/>CAP_SYSTEM_INSTRUCTION"]
+        longitudinal --> long_out["Per-finding change:<br/>new / resolved /<br/>worsened / improved /<br/>unchanged"]
+    end
+
+    prior_check -. "no" .-> skip_c["Skip C"]
+
+    long_out --> tool_result
+    skip_c --> tool_result
+
+    tool_result["ToolResult<br/>{cxr_analysis: findings<br/>+ bboxes + longitudinal}"]
+
+    %% Error cascade
+    load_img -. "fails" .-> img_err["Error: Fatal<br/>Image load failed"]
+    classify -. "fails" .-> class_err["Error: Fatal<br/>B + C skipped"]
+    localize -. "fails" .-> loc_partial["status=partial<br/>Classification preserved"]
+    longitudinal -. "fails" .-> long_partial["status=partial<br/>Classification +<br/>localization preserved"]
+
+    classDef gpuNode fill:#3b82f6,stroke:#1e40af,color:#ffffff,stroke-width:2px
+    classDef cpuNode fill:#10b981,stroke:#047857,color:#ffffff,stroke-width:2px
+    classDef condNode fill:#f59e0b,stroke:#b45309,color:#ffffff,stroke-width:2px
+    classDef sourceNode fill:#e5e7eb,stroke:#6b7280,color:#1f2937,stroke-width:2px
+    classDef extractNode fill:#60a5fa,stroke:#2563eb,color:#ffffff,stroke-width:1px
+    classDef fallbackNode fill:#fef2f2,stroke:#ef4444,color:#991b1b,stroke-width:2px,stroke-dasharray:5 5
+
+    class classify,localize,longitudinal gpuNode
+    class load_img,load_prior cpuNode
+    class path_check,loc_check,prior_check condNode
+    class cxr_in,tool_result sourceNode
+    class class_out,bbox_out,long_out extractNode
+    class no_path_err,img_err,class_err,loc_partial,long_partial,skip_b,skip_c fallbackNode
+
+    style stage_a fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e3a5f
+    style stage_b fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e3a5f
+    style stage_c fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e3a5f
