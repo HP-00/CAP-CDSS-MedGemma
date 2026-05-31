@@ -72,8 +72,7 @@ evolve accordingly.
 ### Quick Start
 1. Set runtime to **GPU -> A100** (Runtime -> Change runtime type)
 2. Add **HF_TOKEN** to Colab Secrets (key icon in left sidebar)
-3. *(Optional)* Add **GITHUB_TOKEN** for private repo install
-4. **Run All** (Runtime -> Run all)'''))
+3. **Run All** (Runtime -> Run all)'''))
 
     cells.append(_markdown("tj-disclaimer", r'''> **Disclaimer:** This notebook demonstrates a research prototype. All clinical outputs
 > (severity scores, antibiotic recommendations, contradiction alerts, CXR analysis)
@@ -96,14 +95,8 @@ except ImportError:
     IN_COLAB = False
 
 if IN_COLAB:
-    # Install from GitHub (requires GITHUB_TOKEN in Colab Secrets)
-    try:
-        github_token = userdata.get("GITHUB_TOKEN")
-        repo_url = f"git+https://{github_token}@github.com/HP-00/MedGemma-Pneumonia-Agent.git@main"
-    except Exception:
-        repo_url = "git+https://github.com/HP-00/MedGemma-Pneumonia-Agent.git@main"
-
-    %pip install --quiet {repo_url}
+    # Install the package from the public GitHub repository
+    %pip install --quiet git+https://github.com/HP-00/CAP-CDSS-MedGemma.git@main
     %pip install --quiet plotly>=5.0.0 pandas>=2.0.0 nest-asyncio
 else:
     print("Local environment detected. Ensure: pip install -e '.[dev,benchmark]'")
@@ -836,7 +829,7 @@ def render_notebook() -> dict:
 
 def render_notebook_text() -> str:
     """Render notebook JSON with stable formatting."""
-    return json.dumps(render_notebook(), indent=1, ensure_ascii=True) + "\n"
+    return json.dumps(render_notebook(), indent=1, sort_keys=True, ensure_ascii=False) + "\n"
 
 
 def write_notebook(path: Path = OUTPUT_PATH) -> None:

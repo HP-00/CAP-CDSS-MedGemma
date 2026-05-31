@@ -100,8 +100,8 @@ The system is a full-stack application with real-time streaming from GPU inferen
 ### Local development (no GPU required)
 
 ```bash
-git clone https://github.com/HP-00/MedGemma-Pneumonia-Agent.git
-cd MedGemma-Pneumonia-Agent
+git clone https://github.com/HP-00/CAP-CDSS-MedGemma.git
+cd CAP-CDSS-MedGemma
 pip install -e ".[dev]"
 pytest -v --tb=short          # 556 tests, all pass without GPU
 ```
@@ -115,10 +115,10 @@ pip install -e ".[dev,server]"
 
 ### Google Colab (recommended for GPU inference)
 
-All 9 notebooks run on Colab with a T4 GPU. Install from the repository:
+All 9 notebooks run on Colab with an A100 GPU. Install from the repository:
 
 ```python
-pip install git+https://github.com/HP-00/MedGemma-Pneumonia-Agent.git@main
+pip install git+https://github.com/HP-00/CAP-CDSS-MedGemma.git@main
 ```
 
 See the [Notebooks](#notebooks) section for direct Colab links.

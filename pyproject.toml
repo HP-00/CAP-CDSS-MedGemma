@@ -22,6 +22,10 @@ dependencies = [
     "json-repair>=0.30",
 ]
 
+[project.urls]
+Homepage = "https://github.com/HP-00/CAP-CDSS-MedGemma"
+Repository = "https://github.com/HP-00/CAP-CDSS-MedGemma"
+
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
