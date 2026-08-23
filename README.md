@@ -1,7 +1,12 @@
 # CAP-CDSS: Agentic Cross-Modal Contradiction Detection for Community-Acquired Pneumonia
 
+> 🏅 **Honorable Mention, Google MedGemma Impact Challenge (Mar 2026)**, named in
+> [Google's official winners announcement](https://blog.google/innovation-and-ai/technology/health/med-gemma-impact-challenge/)
+> among 850+ teams.
+
 **An 8-node LangGraph agent that uses MedGemma 4B to detect and resolve contradictions across chest X-rays, lab results, and clinical examination**
 
+[![Honorable Mention](https://img.shields.io/badge/🏅_Honorable_Mention-Google_MedGemma_Impact_Challenge-blue)](https://blog.google/innovation-and-ai/technology/health/med-gemma-impact-challenge/)
 ![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License CC-BY-4.0](https://img.shields.io/badge/license-CC--BY--4.0-green)
 ![Tests 556](https://img.shields.io/badge/tests-556-brightgreen)
